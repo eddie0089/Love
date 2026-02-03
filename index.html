@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine Surprise</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: pink;
+      overflow: hidden;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: red;
+      text-shadow: 2px 2px white;
+      text-align: center;
+    }
+
+    .buttons {
+      margin-top: 30px;
+      position: relative;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    #yes {
+      background-color: red;
+      color: white;
+    }
+
+    #no {
+      background-color: gray;
+      color: white;
+      position: absolute;
+    }
+
+    /* Falling hearts */
+    .heart {
+      position: fixed;
+      top: -10px;
+      color: red;
+      font-size: 24px;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>HEY KRITIKA, WOULD YOU BE MY VALENTINE?</h1>
+  <div class="buttons">
+    <button id="yes">YES</button>
+    <button id="no">NO</button>
+  </div>
+
+  <script>
+    // Floating NO button
+    const noBtn = document.getElementById('no');
+    noBtn.addEventListener('mouseover', () => {
+      const x = Math.random() * window.innerWidth * 0.8;
+      const y = Math.random() * window.innerHeight * 0.8;
+      noBtn.style.left = x + 'px';
+      noBtn.style.top = y + 'px';
+    });
+
+    // YES button opens new page
+    document.getElementById('yes').addEventListener('click', () => {
+      window.open('love.html', '_blank');
+    });
+
+    // Falling hearts
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>
